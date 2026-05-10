@@ -3,8 +3,14 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const crypto = require("crypto");
 const connectDB = require("./config/db");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
+
+// Polyfill for Node.js
+if (!global.crypto) {
+  global.crypto = crypto;
+}
 
 dotenv.config();
 
